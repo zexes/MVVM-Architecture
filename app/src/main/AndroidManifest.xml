@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zikozee.architectureexample">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--TODO 17 add android:launchMode="singleTop" if not added, MainActivity will be Re-Created and placed on top.
+        TODO rather we want to go bck to the previous MainActivity. TEST THIS and you'll notice if you don't add, Toast on cancel will not show-->
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--TODO 16 parentActivityName >>> ensures on back button we are brought back to Main Activity-->
+        <activity
+            android:name=".AddNoteActivity"
+            android:parentActivityName=".MainActivity" />
+    </application>
+
+</manifest>
