@@ -53,29 +53,20 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO STEP 14
         FloatingActionButton buttonAddNote = findViewById(R.id.button_add_note);
-        buttonAddNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
-                startActivityForResult(intent, 1);// same as the overridden method below so be aware
-            }
+        buttonAddNote.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddNoteActivity.class);
+            startActivityForResult(intent, ADD_NOTE_REQUEST);
         });
     }
 
-    //TODO STEP 15
+//    //TODO STEP 15
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK){
-            String title = data.getStringExtra(AddNoteActivity.EXTRA_TITLE);
-            String description = data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION);
-            int priority = data.getIntExtra(AddNoteActivity.EXTRA_PRIORITY, 1);
-
-            Note note = new Note(title, description, priority);
-            noteViewModel.insert(note);
-
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
+            if(data.hasExtra("success"))
+                Toast.makeText(this, data.getStringExtra("success"), Toast.LENGTH_SHORT).show();
         }else{
             //TODO back button pressed and/or RESULT_CANCELLED
             Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();

@@ -2,6 +2,7 @@ package com.zikozee.architectureexample;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +15,7 @@ import android.widget.Toast;
 
 //TODO STEP 13
 public class AddNoteActivity extends AppCompatActivity {
-    public static final String EXTRA_TITLE = "com.zikozee.architectureexample.EXTRA_TITLE";
-    public static final String EXTRA_DESCRIPTION = "com.zikozee.architectureexample.EXTRA_DESCRIPTION";
-    public static final String EXTRA_PRIORITY = "com.zikozee.architectureexample.EXTRA_PRIORITY";
+    private AddNoteViewModel addNoteViewModel;
 
     private EditText editTextTitle, editTextDescription;
     private NumberPicker numberPickerPriority;
@@ -35,6 +34,11 @@ public class AddNoteActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
         setTitle("Add Note");
+
+        addNoteViewModel = new ViewModelProvider(this, ViewModelProvider
+                .AndroidViewModelFactory
+                .getInstance(this.getApplication())).get(AddNoteViewModel.class);
+
     }
 
     private void saveNote(){
@@ -44,21 +48,15 @@ public class AddNoteActivity extends AppCompatActivity {
 
         if(title.trim().isEmpty() || description.trim().isEmpty()){
             Toast.makeText(this, "Please insert a title and description", Toast.LENGTH_SHORT).show();
-            return;
+        }else{
+            Note note = new Note(title, description, priority);
+            addNoteViewModel.insert(note);
+            Intent saveNoteIntent = new Intent();
+            saveNoteIntent.putExtra("success", "Note Saved Successfully");
+//            startActivity(saveNoteIntent);
+            setResult(RESULT_OK, saveNoteIntent);
+            finish();
         }
-
-        //save to db and close activity
-        //TODO VERY IMPORTANT: Instead of doing the below, we have created an AddNoteViewModel devoid of update, getallNotes, delete, deleteAllNotes
-        //TODO and make available only "insert" which can then be used here alone
-
-        Intent data = new Intent();
-        data.putExtra(EXTRA_TITLE, title);
-        data.putExtra(EXTRA_DESCRIPTION, description);
-        data.putExtra(EXTRA_PRIORITY, priority);
-
-        //TODO this is awesome so when back button is pressed it will return RESULT_CANCELLED
-        setResult(RESULT_OK, data);
-        finish();
     }
 
     @Override
