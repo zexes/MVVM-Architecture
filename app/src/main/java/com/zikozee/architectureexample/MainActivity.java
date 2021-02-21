@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         noteViewModel.getAllNotes().observe(this, notes -> { // guy takes care of the update
             //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
             //TODO 9.1 update RecyclerView with setNotes method in adapter. Anytime table changes notes is updated
-            adapter.setNotes(notes);
+//            adapter.setNotes(notes);
+            adapter.submitList(notes);//TODO 20.9 we changed implementation from RecyclerView.Adapter to ListAdapter hence we use the ready made rather than our implem as above
         });
 
         //TODO STEP 14
