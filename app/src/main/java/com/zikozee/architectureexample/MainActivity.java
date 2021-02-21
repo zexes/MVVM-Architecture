@@ -1,14 +1,19 @@
 package com.zikozee.architectureexample;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -36,19 +41,12 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO STEP 6
         //here we ask android for a viewModel instance. Hence android knows when to create a new or reuse already existing view model
-        noteViewModel = new ViewModelProvider(this, ViewModelProvider
-                .AndroidViewModelFactory
-                .getInstance(this.getApplication())).get(NoteViewModel.class);
-
+        noteViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(this.getApplication())).get(NoteViewModel.class);
         //owner => helps to update if its in fore ground
-        noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
-            @Override
-            public void onChanged(List<Note> notes) { // guy takes care of the update
-
-                //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
-                //TODO 9.1 update RecyclerView with setNotes method in adapter. Anytime table changes notes is updated
-                adapter.setNotes(notes);
-            }
+        noteViewModel.getAllNotes().observe(this, notes -> { // guy takes care of the update
+            //Toast.makeText(MainActivity.this, "onChanged", Toast.LENGTH_SHORT).show();
+            //TODO 9.1 update RecyclerView with setNotes method in adapter. Anytime table changes notes is updated
+            adapter.setNotes(notes);
         });
 
         //TODO STEP 14
@@ -60,6 +58,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);// same as the overridden method below so be aware
             }
         });
+
+
+        //TODO STEP 19
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                noteViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(MainActivity.this, "Note deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     //TODO STEP 15
@@ -81,6 +94,27 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show();
         }
 
-        //TODO STEP 18 NOTICE because we ordered by priority our recyclerVie will display accordingly based in priority we set. i.e ON ADD NEW NOTE
+        //TODO STEP 18 NOTICE because we ordered by priority our recyclerView will display accordingly based in priority we set. i.e ON ADD NEW NOTE
+    }
+
+    //TODO 19.3
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    //TODO 19.4
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete_all_notes:
+                noteViewModel.deleteAllNotes();
+                Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

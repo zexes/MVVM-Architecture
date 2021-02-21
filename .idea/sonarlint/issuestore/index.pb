@@ -1,0 +1,19 @@
+
+k
+;app/src/main/java/com/zikozee/architectureexample/Note.java,6\4\642f7a9ae3fd48a5845be302bbbd250413bd8c8f
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+s
+Capp/src/main/java/com/zikozee/architectureexample/NoteDatabase.java,b\e\be51c30e9d34874c7905b9cccfc9c6d64067cbf2
+n
+>app/src/main/java/com/zikozee/architectureexample/NoteDao.java,1\e\1e3b5091b62d7c95c7a348b76b7c012f6d1b5e59
+t
+Dapp/src/main/java/com/zikozee/architectureexample/NoteViewModel.java,f\9\f9199408196d53c33ad101f4f2f4f6d9fbfb076e
+u
+Eapp/src/main/java/com/zikozee/architectureexample/NoteRepository.java,a\b\abd8b42ba78f78eac9ed7fc0cdcdcbaeb61da3a3
+r
+Bapp/src/main/java/com/zikozee/architectureexample/NoteAdapter.java,8\0\8082dfca6302ec08a2caffc04b3df3652c64fa87
+s
+Capp/src/main/java/com/zikozee/architectureexample/MainActivity.java,0\5\05c4b500653db42f2d1cb7acf170c6e9e42b62af
+v
+Fapp/src/main/java/com/zikozee/architectureexample/AddNoteActivity.java,6\8\68ea49e60d9511efdd2872dfdec6f970ee1f2e77
