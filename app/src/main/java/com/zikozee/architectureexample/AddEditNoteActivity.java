@@ -13,7 +13,8 @@ import android.widget.NumberPicker;
 import android.widget.Toast;
 
 //TODO STEP 13
-public class AddNoteActivity extends AppCompatActivity {
+public class AddEditNoteActivity extends AppCompatActivity {
+    public static final String EXTRA_ID = "com.zikozee.architectureexample.EXTRA_ID";
     public static final String EXTRA_TITLE = "com.zikozee.architectureexample.EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "com.zikozee.architectureexample.EXTRA_DESCRIPTION";
     public static final String EXTRA_PRIORITY = "com.zikozee.architectureexample.EXTRA_PRIORITY";
@@ -34,7 +35,17 @@ public class AddNoteActivity extends AppCompatActivity {
         numberPickerPriority.setMaxValue(10);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        setTitle("Add Note");
+
+        //TODO 20.5
+        Intent intent = getIntent();
+        if(intent.hasExtra(EXTRA_ID)){
+            setTitle("Edit Note");
+            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE));
+            editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION));
+            numberPickerPriority.setValue(intent.getIntExtra(EXTRA_PRIORITY, 1));
+        }else{
+            setTitle("Add Note");
+        }
     }
 
     private void saveNote(){
@@ -55,6 +66,12 @@ public class AddNoteActivity extends AppCompatActivity {
         data.putExtra(EXTRA_TITLE, title);
         data.putExtra(EXTRA_DESCRIPTION, description);
         data.putExtra(EXTRA_PRIORITY, priority);
+
+        //TODO 20.6
+        int id = getIntent().getIntExtra(EXTRA_ID, -1);
+        if(id != -1){
+            data.putExtra(EXTRA_ID, id);
+        }
 
         //TODO this is awesome so when back button is pressed it will return RESULT_CANCELLED
         setResult(RESULT_OK, data);

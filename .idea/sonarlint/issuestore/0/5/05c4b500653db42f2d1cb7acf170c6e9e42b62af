@@ -1,0 +1,37 @@
+
+m
+java:S1301o"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ8šÉÖ­ü.
+X	java:S110"<This class has 9 parents which is greater than 5 authorized.(²Ú±8šÉÖ­ü.
+E
+java:S16046"(Make this anonymous inner class a lambda(•ÏóÌ8šÉÖ­ü.
+d
+java:S2259T"BA "NullPointerException" could be thrown; "data" is nullable here.(íÆ‰¬ûÿÿÿÿ8šÉÖ­ü.
+Z
+java:S1128"8Remove this unused import 'androidx.lifecycle.Observer'.(ÒÁˆÉşÿÿÿÿ8šÉÖ­ü.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8šÉÖ­ü.
+O
+java:S1135""2Complete the task associated to this TODO comment.(é´Ÿä8šÉÖ­ü.
+T
+java:S1135*"2Complete the task associated to this TODO comment.(‹­’şşÿÿÿÿ8šÉÖ­ü.
+H
+java:S1612.",Replace this lambda with a method reference.(ÿáÈD8šÉÖ­ü.
+H
+java:S1602.",Remove useless curly braces around statement(ÿáÈD8šÉÖ­ü.
+]	java:S125/"<This block of commented-out lines of code should be removed.(ì±ŒÚÿÿÿÿÿ8šÉÖ­ü.
+O
+java:S11350"2Complete the task associated to this TODO comment.(ÓÁÚ8šÉÖ­ü.
+T
+java:S11354"2Complete the task associated to this TODO comment.(‘üı­ıÿÿÿÿ8šÉÖ­ü.
+O
+java:S1135?"2Complete the task associated to this TODO comment.(—”8šÉÖ­ü.
+O
+java:S1135N"2Complete the task associated to this TODO comment.(ÏÕç–8šÉÖ­ü.
+T
+java:S1135]"2Complete the task associated to this TODO comment.(ËÖ»Ñúÿÿÿÿ8šÉÖ­ü.
+O
+java:S1135a"2Complete the task associated to this TODO comment.(£×¹µ8šÉÖ­ü.
+T
+java:S1135d"2Complete the task associated to this TODO comment.(¡ÆÓÌùÿÿÿÿ8šÉÖ­ü.
+O
+java:S1135l"2Complete the task associated to this TODO comment.(†œÊÆ8šÉÖ­ü.

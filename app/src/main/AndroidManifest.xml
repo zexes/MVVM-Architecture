@@ -21,7 +21,7 @@
         </activity>
         <!--TODO 16 parentActivityName >>> ensures on back button we are brought back to Main Activity-->
         <activity
-            android:name=".AddNoteActivity"
+            android:name=".AddEditNoteActivity"
             android:parentActivityName=".MainActivity" />
     </application>
 
